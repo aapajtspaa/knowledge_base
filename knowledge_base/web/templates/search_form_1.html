@@ -1,0 +1,51 @@
+{% extends "base1.html" %}
+{% block 标题 %}
+搜索
+{% endblock 标题 %}
+{% block 主体 %}
+<div style="width:100%;text-align:center">
+    <form action="/search" method="GET">
+        <div class="form-position">
+            <div><img src="/static/search.png" alt=""></div>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="请输入病状"
+                       aria-label="Recipient's username" aria-describedby="button-addon2" name="q">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success my-2 my-sm-0 button-class" type="submit">搜索一下</button>
+                </div>
+            </div>
+            </div>
+    </form>
+</div>
+
+<div style="text-align:center">
+    <form action="/search/" method="GET">
+        <div class="div-position">
+            {% if 病状类别 %}
+            <div class="card">
+                <div class="card-header">
+                    病状类别
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{ 病状类别 }}</p>
+                    </blockquote>
+                </div>
+            </div>
+            {% endif %}
+            {% if 总计用时 %}
+            <div class="card">
+                <div class="card-header">
+                    总计用时
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p>{{ 总计用时 }}</p>
+                    </blockquote>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </form>
+</div>
+{% endblock 主体 %}

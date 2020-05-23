@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block 标题 %}
+本站使用说明
+{% endblock 标题 %}
+{% block 主体 %}
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="/static/img/core-img/breadcrumb-line.png" alt="">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i>主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">本站使用说明</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcrumb Area End ##### -->
+
+<div class="typography-content-area section-padding-0-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="section-heading">
+                    <h2>本站使用说明</h2>
+                    <p>MAY 11，2020 / 小羊</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+
+                <!-- Type Face -->
+                <div class="about-content">
+                    <h1>站内搜索：</h1>
+                    <p>最上方搜索框为本站全文检索，也就是数据库内容中对“病症”“例方”两个表的内容检索，给大家两个搜索示例：“头晕”、“血热”。</p>
+                    <p>站内搜索结果格式：</p>
+                    <ul>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>序号：搜索到内容对应的序号，为空则说明搜索结果为病症表内容</li>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>病机-治法：搜索到内容对应的病机-治法，对应例方或病症，</li>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>例方名：搜索到内容对应的例方名，为空则说明搜索结果为病症表内容</li>
+
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>主治：搜索到内容对应的主治，为空则说明搜索结果为病症表内容</li>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>证析：搜索到内容对应的证析，为空则说明搜索结果为病症表内容</li>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>病机：搜索到内容对应的病机，为空则说明搜索结果为病症表内容</li>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>治法：搜索到内容对应的治法，为空则说明搜索结果为病症表内容</li>
+
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>适应证候：搜索到内容对应的适应证候，为空则说明搜索结果为例方表内容</li>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>病理分析：搜索到内容对应的病理分析，为空则说明搜索结果为例方表内容</li>
+                        <li><i class="fa fa-circle" aria-hidden="true"></i>立法组方：搜索到内容对应的立法组方，为空则说明搜索结果为例方表内容</li>
+                    </ul>
+                    <p>格式中：”病机-治法“为数据库字段里面的bingji_zhifa类，病症表与例方表共享；例方名、主治、证析、病机、治法对应例方表内容；适应证候、病理分析、立法组方对应病症表内容，病症表与例方表搜索结果不共存，也就是说如果搜索结果中例方字段内容为空，
+                        说明此时搜索结果的病机-治法为病症表中的病机-治法类，序号也对应着病症表中的id，反之病症相关搜索内容为空，则病机-治法以及序号对应例方表中内容。</p>
+                    <h1>病状搜索</h1>
+                    <p>在病状搜索框中搜索病状，会在新页面中显示搜索到的病状属于哪个类别，根据后端分类预测传递结果。</p>
+                    <p>同样给两个搜索示例：</p>
+                    <p>“心悸、健忘，兼见面色无华、唇舌淡白、脉象细弱。”</p>
+                    <p>”腹痛、四肢拘挛、转筋;舌淡、苔少、脉弦，偏热。“</p>
+                    <p>格式比较易懂。</p>
+                    <h1>数据库表展示</h1>
+                    <p>由于部分数据库字段对应内容过长，且为了影响整体性的观看，我对较长部分内容作了表格省略处理，也就是说鼠标悬停在某一数据库字段内容，就可以查看全部该字段内容，鼠标挪开恢复原状。</p>
+                    <img class="pt-5" src="/static/img/core-img/breadcrumb-line.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock 主体 %}

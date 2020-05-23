@@ -1,0 +1,300 @@
+{% extends "base.html" %}
+{% block 标题 %}
+中医治法知识库结构内容说明
+{% endblock 标题 %}
+{% block 主体 %}
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="/static/img/core-img/breadcrumb-line.png" alt="">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/index/"><i class="fa fa-home"></i>主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">中医治法知识库结构内容说明</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcrumb Area End ##### -->
+
+<div class="typography-content-area section-padding-0-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="section-heading">
+                    <h2>中医治法知识库结构内容说明</h2>
+                    <p>MAY 5, 2020 / 小羊</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+
+                <!-- Type Face -->
+                <div class="type-face">
+                    <h2>中医治法知识库结构展示</h2>
+                    <p>本部分内容包括知识库所使用到的数据库ER图模型，以及分类功能的实现过程</p>
+                    <h3>第一节数据库ER图模型</h3>
+                    <p>
+                        数据库使用关系数据库模型，根据正则表达式识别结果进行分类处理，根据书中不同“节”分成了不同的治法类别表，同时根据书中所列148条病机-治法说明以及600多条所给方剂，设计了病机-治法表以及例方表，根据书中所给6章内容，分为病机系别六类，上述内容加以外键链接构成了数据库ER图，具体字段名称以及内容说明会放在下一部分详细说明。</p>
+                    <p>同时本站使用的数据库与知识库使用数据库不尽相同，由于本站之展示部分有关于治法与方剂内容，所以只选取了其中4个表作为后端数据库使用，分别为：病机系别表，病症表，例方表，致病机理表。</p>
+                    <h4>ER 图</h4>
+                    <img src="/static/img/blog-img/jiegou.jpg" alt="">
+                    <h3>第二节分类功能的实现过程</h3>
+                    <h4>一、训练集来源</h4>
+                    <p>
+                        训练集数据来源均为对书中内容正则表达式识别结果，同时删减了书中与病症与治法无关的部分，比如例方中的[用法][方义]等无关内容，最后根据正则表达式识别结果显示，共有3088条数据内容，根据书中所列章节分为6大类，加以收集整理，以此为训练集，利用jieba分词和TF-IDF词频分析技术对训练集进行向量化相关处理，搭配朴素贝叶斯分类算法对输入结果进行分类预测，整体显示训练集3088个其中有2907为有效数据集，具体分词结果、向量化词频的文本导出、分词向量矩阵内容将整理为文档进行分享。</p>
+                    <h4>二、词频分析与分类算法</h4>
+                    <h5>TF-IDF</h5>
+                    <p>TF-IDF是Term Frequency - Inverse Document Frequency的缩写，即“词频-逆文本频率”。它由两部分组成，TF和IDF。</p>
+                    <p>
+                        前面的TF也就是我们前面说到的词频，我们之前做的向量化也就是做了文本中各个词的出现频率统计，并作为文本特征，这个很好理解。关键是后面的这个IDF，即“逆文本频率”如何理解。在上一节中，我们讲到几乎所有文本都会出现的"to"其词频虽然高，但是重要性却应该比词频低的"China"和“Travel”要低。我们的IDF就是来帮助我们来反应这个词的重要性的，进而修正仅仅用词频表示的词特征值。</p>
+                    <p>概括来讲，
+                        IDF反应了一个词在所有文本中出现的频率，如果一个词在很多的文本中出现，那么它的IDF值应该低，比如上文中的“to”。而反过来如果一个词在比较少的文本中出现，那么它的IDF值应该高。比如一些专业的名词如“Machine
+                        Learning”。这样的词IDF值应该高。一个极端的情况，如果一个词在所有的文本中都出现，那么它的IDF值应该为0。</p>
+                    <p>上面是从定性上说明的IDF的作用，那么如何对一个词的IDF进行定量分析呢？这里直接给出一个词x的IDF的基本公式如下：</p>
+                    <img src="/static/img/blog-img/IDF.png" alt="">
+                    <p>
+                        其中，N代表语料库中文本的总数，而N(x)代表语料库中包含词x的文本总数。为什么IDF的基本公式应该是上面这样的，而不是像N/N(x)这样的形式呢？这就涉及到信息论相关的一些知识了。感兴趣的朋友建议阅读吴军博士的《数学之美》第11章。</p>
+                    <p>上面的IDF公式已经可以使用了，但是在一些特殊的情况会有一些小问题，比如某一个生僻词在语料库中没有，这样我们的分母为0，
+                        IDF没有意义了。所以常用的IDF我们需要做一些平滑，使语料库中没有出现的词也可以得到一个合适的IDF值。平滑的方法有很多种，最常见的IDF平滑后的公式之一为：</p>
+                    <img src="/static/img/blog-img/IDF2.png" alt="">
+                    <p>有了IDF的定义，我们就可以计算某一个词的TF-IDF值了：</p>
+                    <p>TF−IDF(x)=TF(x) * IDF(x)</p>
+                    <p>其中TF(x)指词x在当前文本中的词频。</p>
+                    <h5>朴素贝叶斯分类算法</h5>
+                    <p>贝叶斯分类是一类分类算法的总称，这类算法均以贝叶斯定理为基础，故统称为贝叶斯分类。而朴素朴素贝叶斯分类是贝叶斯分类中最简单，也是常见的一种分类方法。</p>
+                    <p>那么既然是朴素贝叶斯分类算法，它的核心算法又是什么呢？是下面这个贝叶斯公式：</p>
+                    <img src="/static/img/blog-img/BYS.png" alt="">
+                    <p>换个表达形式就会明朗很多，如下：</p>
+                    <img src="/static/img/blog-img/BYS2.png" alt="">
+                    <p>我们最终求的p(类别|特征)即可</p>
+                    <p>另外，贝叶斯原理、贝叶斯分类和朴素贝叶斯这三者之间是有区别的。</p>
+                    <p>
+                        贝叶斯原理是最大的概念，它解决了概率论中“逆向概率”的问题，在这个理论基础上，人们设计出了贝叶斯分类器，朴素贝叶斯分类是贝叶斯分类器中的一种，也是最简单，最常用的分类器。朴素贝叶斯之所以朴素是因为它假设属性是相互独立的，因此对实际情况有所约束，如果属性之间存在关联，分类准确率会降低。不过好在对于大部分情况下，朴素贝叶斯的分类效果都不错。</p>
+                    <p>朴素贝叶斯分类常用于文本分类，分类效果很好。它常用于垃圾文本过滤、情感预测、推荐系统等。</p>
+                    <p>第一阶段：准备阶段</p>
+                    <p>这一阶段是整个朴素贝叶斯分类中唯一需要人工完成的阶段，其质量对整个过程将有重要影响，分类器的质量很大程度上由特征属性、特征属性划分及训练样本质量决定。</p>
+                    <p>第二阶段：训练阶段</p>
+                    <p>这个阶段就是生成分类器，主要工作是计算每个类别在训练样本中的出现频率及每个特征属性划分对每个类别的条件概率。
+                        输入是特征属性和训练样本，输出是分类器。</p>
+                    <p>第三阶段：应用阶段</p>
+                    <p>这个阶段是使用分类器对新数据进行分类。输入是分类器和新数据，输出是新数据的分类结果。</p>
+                    <h2>数据库字段定义与内容说明</h2>
+                    <h3>“病机系别”表</h3>
+                    <p>首先为根据书中前言所叙设计的“病机系别”表，字段设置为：</p>
+                    <table border="1" style="border-collapse:collapse;width: 700;margin: auto; text-align: center;">
+                        <caption>病机系别表</caption>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>长度</th>
+                        <th>不是null</th>
+                        <th>主键</th>
+                        <tr>
+                            <td>id</td>
+                            <td>int</td>
+                            <td>0</td>
+                            <td>不可为空</td>
+                            <td>是</td>
+                        </tr>
+                        <tr>
+                            <td>病机系别</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                    </table>
+                    <h3>“治法类别”表</h3>
+                    <p>所有治法类别表，例如本脏自病表、表卫失调表字段设置均为：</p>
+                    <table border="1" style="border-collapse:collapse;width: 700;margin: auto; text-align: center;">
+                        <caption>治法类别表</caption>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>长度</th>
+                        <th>不是null</th>
+                        <th>主键</th>
+                        <tr>
+                            <td>id</td>
+                            <td>int</td>
+                            <td>0</td>
+                            <td>不为null</td>
+                            <td>是</td>
+                        </tr>
+                        <tr>
+                            <td>治法类别</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>可为null</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>病机-治法</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>可为null</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>病机系别</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>可为null</td>
+                            <td>不是</td>
+                        </tr>
+                    </table>
+                    <p>其中“治法类别”为书中各大病机系别下所划分的小节名，“病机-治法”为书中有关治法与方剂内容的标题名，“病机系别”为书中所分6章不同病机的节名</p>
+                    <h3>“病症”表</h3>
+                    <p>根据书中所给148例“病机-治法”内容，整理其中【适应证侯】、【病及分析】、【立法组方】全部内容，并创建“病症”表，字段设置为：</p>
+                    <table border="1" style="border-collapse:collapse;width: 700;margin: auto; text-align: center;">
+                        <caption>病症表</caption>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>长度</th>
+                        <th>不是null</th>
+                        <th>主键</th>
+                        <tr>
+                            <td>id</td>
+                            <td>int</td>
+                            <td>0</td>
+                            <td>不可为空</td>
+                            <td>是</td>
+                        </tr>
+                        <tr>
+                            <td>病机-治法</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>适应证侯</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>病理分析</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>立法组方</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                    </table>
+                    <p>需要说明的是：</p>
+                    <p>由于前端所使用数据库不支持长度较长的varchar类型，故数据导入前端时将所有原数据库长度为5000的varchar类型全部转为了longtext类型，以便进行数据导入与前端后续检索；同时所使用的Django数据库Models并不支持中文名称定义的字段名与表名，所以在Django后端已经将数据库字段名以及表名改为对应的英文拼音，但是在每项后面我添加了verbose_name属性，将原中文名字可进行显示。</p>
+                    <h3>“例方”表</h3>
+                    <p>根据书中【立法组方】后所列例方信息，建立“例方”表,由于部分内容与治法病机无关，故只保留了[主治][证析][病机][治法]4个属性的内容，字段设置为：</p>
+                    <table border="1" style="border-collapse:collapse;width: 700;margin: auto; text-align: center;">
+                        <caption>例方表</caption>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>长度</th>
+                        <th>不是null</th>
+                        <th>主键</th>
+                        <tr>
+                            <td>id</td>
+                            <td>int</td>
+                            <td>0</td>
+                            <td>不可为空</td>
+                            <td>是</td>
+                        </tr>
+                        <tr>
+                            <td>病机-治法</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>例方名</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>主治</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>证析</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>病机</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>治法</td>
+                            <td>varchar</td>
+                            <td>5000</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                    </table>
+                    <h3>“致病机理”表</h3>
+                    <p>最后根据书中治法类别、病机-治法、病机系别的对应关系，整理所有148例内容汇总到“致病机理”表，用作快速查询，字段设置为：</p>
+                    <table border="1" style="border-collapse:collapse;width: 700;margin: auto; text-align: center;">
+                        <caption>致病机理表</caption>
+                        <th>字段名</th>
+                        <th>类型</th>
+                        <th>长度</th>
+                        <th>不是null</th>
+                        <th>主键</th>
+                        <tr>
+                            <td>id</td>
+                            <td>int</td>
+                            <td>0</td>
+                            <td>不可为空</td>
+                            <td>是</td>
+                        <tr>
+                            <td>治法类别</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>病机-治法</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                        <tr>
+                            <td>病机系别</td>
+                            <td>varchar</td>
+                            <td>255</td>
+                            <td>不可为空</td>
+                            <td>不是</td>
+                        </tr>
+                    </table>
+                    <img class="pt-5" src="/static/img/core-img/breadcrumb-line.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock 主体 %}

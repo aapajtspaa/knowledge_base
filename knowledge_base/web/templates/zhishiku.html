@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block 标题 %}
+知识库建立
+{% endblock 标题 %}
+{% block 主体 %}
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="/static/img/core-img/breadcrumb-line.png" alt="">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/index/"><i class="fa fa-home"></i>主页</a></li>
+                        <li class="breadcrumb-item"><a href="#">项目开发心得</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">知识库建立</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<section class="blog-content-area section-padding-0-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Blog Posts Area -->
+            <div class="col-12 col-lg-8">
+                <div class="blog-posts-area">
+
+                    <!-- Post Details Area -->
+                    <div class="single-post-details-area">
+                        <div class="post-thumbnail mb-30">
+                            <img src="/static/img/blog-img/zhishiku.jpeg" alt="">
+                        </div>
+                        <div class="post-content">
+                            <p class="post-date">MAY 8, 2018 / 小羊</p>
+                            <h4 class="post-title">知识库建立</h4>
+
+                            <h3>正则表达式</h3>
+                            <p>进行正则识别之前需要进行文本结构化处理，设置识别停止词，也就是类似的开头语和结束语，由于《中医治法与方剂（第五版）》书中结构性较强，所以省去了很多麻烦，只需要在例方前后设置“【例方起始】”、“【例方终止】”两个识别内容即可，另外要根据书中内容进行完整读取需要补充完整结构化，比如本书中有两类治法并无【立法组方】内容，但需要在原文自己进行填充，不然识别导出时与其他内容会形成错位对应。造成很麻烦的结果。</p>
+                            <h3>关系数据库</h3>
+                            <p>为了方便查询，使用了可视化图形界面的Navicat连接本地mysql数据库，同时根据上述的正则表达式识别结果，进行完整的ER图设计，需要说明的是，虽然Navicat支持数据库表分组，但在mysql控制台查询表名时，并无分组形式，所以知识库展示时会展示有分组的33个表，这样结构性更强。</p>
+                            <p>同时，由于不同组别表的内容满足同一结构，后续我做了一个汇总表，将所有组的表中数据作为统一的表进行前端展示，如果不汇总的话，需要33个页面进行数据库表展示，不方便建站的同时，也不方便进行数据库内容展示。</p>
+                            <h3>TF-IDF词频分析与朴素贝叶斯算法</h3>
+                            <p>中期答辩时老师问了我关于分类算法是不是自己写的问题，确实朴素贝叶斯是已经封装好的函数代码，而且TF-IDF的使用例子网上也有一大堆，但由于中医文本的复杂性与精简性，需要设置更多的迭代次数，对应着调用朴素贝叶斯时的alpha参数，看了几个示例大家普遍选择alpha=0.5作为参数选择，alpha值越小，迭代次数越多，所以此项目中，我选取了alpha=0.001，这样训练集的分类预测置信度会提高一些。</p>
+                            <p>测试结果表明，如果文本中含有明确的原文内容分词结果，识别成功率会提高一些，而且识别对“白话”的分类置信度并不高，这个可以很容易的理解，因为中医特有的表述形式，与我们平时对话中所描述病症的口语必不可能相同，中医更偏文言一点，而口语更浅显易懂，因为没办法从老中医得到中医确诊的病症信息，所以测试时只是打乱了几个不同种类病机治法的病症信息，用来判断该预测分类结果是否准确，选取片段有短有长，测试结果表明，本项目所实现的分类预测，对中医病状长文本识别更准确，短文本会造成识别不准。</p>
+                            <p>关于为什么短文本会识别不准确，我分析了部分原因，本身由于我设置的迭代次数应该足够高，应该对较短的病状文本有比较好的分类预测支持，但根据书中内容，病状不可能只由一个病机引起，用最简单的头晕举例，由于肝阳上亢，血压增高会导致头晕，由于肾阳不足，形体衰弱也会导致头晕，而这两种分属于肝胆病机治法和肾系病机治法，因为分词结果复杂，不可能挨个词找到头晕对应在这两个训练集中的词频信息，所以分类预测时出现小错误也在情理之中。</p>
+                            <p>综上所述，要进行病状类别查询时，最好有足够多的病状描述信息，根据测试结果来看的话，至少应该有15字左右的有效病状描述信息。</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Blog Sidebar Area -->
+            <div class="col-12 col-sm-9 col-md-6 col-lg-4">
+                <div class="post-sidebar-area">
+
+                    <!-- ##### Single Widget Area ##### -->
+                    <div class="single-widget-area mt-0">
+                        <!-- Title -->
+                        <div class="widget-title">
+                            <h6>关键字</h6>
+                        </div>
+                        <ol class="foode-catagories">
+                            <li><a href="https://baike.baidu.com/item/%E7%9F%A5%E8%AF%86%E5%BA%93/217934?fr=aladdin"
+                                   target="_blank"><span><i class="fa fa-stop" aria-hidden="true"></i>知识库</span>
+                                <span></span></a></li>
+                            <li>
+                                <a href="https://baike.baidu.com/item/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/365730?fr=aladdin"
+                                   target="_blank"><span><i class="fa fa-stop" aria-hidden="true"></i>自然语言处理</span>
+                                    <span></span></a></li>
+                            <li>
+                                <a href="https://baike.baidu.com/item/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/217599?fr=aladdin"
+                                   target="_blank"><span><i class="fa fa-stop" aria-hidden="true"></i>机器学习</span>
+                                    <span></span></a></li>
+                            <li>
+                                <a href="https://baike.baidu.com/item/%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/1237340?fr=aladdin"
+                                   target="_blank"><span><i class="fa fa-stop" aria-hidden="true"></i>关系数据库模型</span>
+                                    <span></span></a></li>
+                        </ol>
+                    </div>
+
+                    <!-- ##### Single Widget Area ##### -->
+                    <div class="single-widget-area">
+                        <!-- Title -->
+                        <div class="widget-title">
+                            <h6>所使用到的相关教程链接</h6>
+                        </div>
+
+                        <!-- Single Latest Posts -->
+                        <div class="single-latest-post d-flex">
+                            <div class="post-thumb">
+                                <a href="https://blog.csdn.net/silent_crown/article/details/84657863"><img
+                                        src="/static/img/blog-img/IDF2.png" alt=""></a>
+                            </div>
+                            <div class="post-content">
+                                <a href="https://blog.csdn.net/silent_crown/article/details/84657863" target="_blank"
+                                   class="post-title">
+                                    <h6>TF-IDF</h6>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <!-- Single Latest Posts -->
+                        <div class="single-latest-post d-flex">
+                            <div class="post-thumb">
+                                <a href="https://blog.csdn.net/amds123/article/details/70173402"><img
+                                        src="/static/img/blog-img/BYS2.png" alt=""></a>
+                            </div>
+                            <div class="post-content">
+                                <a href="https://blog.csdn.net/amds123/article/details/70173402" class="post-title"
+                                   target="_blank">
+                                    <h6>朴素贝叶斯分类</h6>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <!-- Single Latest Posts -->
+                        <div class="single-latest-post d-flex">
+                            <div class="post-thumb">
+                                <a href="https://www.runoob.com/python/python-reg-expressions.html"><img
+                                        src="/static/img/blog-img/cainiao.png" alt=""></a>
+                            </div>
+                            <div class="post-content">
+                                <a href="https://www.runoob.com/python/python-reg-expressions.html" target="_blank"
+                                   class="post-title">
+                                    <h6>正则表达式教程</h6>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock 主体 %}

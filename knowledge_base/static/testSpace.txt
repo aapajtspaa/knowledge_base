@@ -1,0 +1,1 @@
+{'target_name': ['待分类文本'], 'label': ['待分类文本'], 'filenames': ['./static/split/test_split/待分类文本/1.txt'], 'tdm': [], 'vocabulary': {}}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block 标题 %}
+病症表展示
+{% endblock 标题 %}
+{% block 主体 %}
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="/static/img/core-img/breadcrumb-line.png" alt="">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/index/"><i class="fa fa-home"></i>主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">数据库数据展示 | 治法</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="typography-content-area section-padding-0-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+                <div class="section-heading">
+                    <h2>病症表展示</h2>
+                    <p>MAY 11, 2020 | 小羊</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+
+                <!-- Type Face -->
+                <div class="type-face">
+                    <div class="table-responsive-xl">
+                        <table class="table">
+
+                            <caption></caption>
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">病机-治法</th>
+                                <th scope="col">适应证候</th>
+                                <th scope="col">病理分析</th>
+                                <th scope="col">立法组方</th>
+                            </tr>
+                            </thead>
+                            {% for names in names %}
+                            <tbody>
+
+                            <tr>
+
+                                <th scope="row">{{names.id}}</th>
+                                <td>{{names.bingji_zhifa}}</td>
+                                <td>{{names.shiyingzhenghou}}</td>
+                                <td>{{names.binglifenxi}}</td>
+                                <td>{{names.lifazufang}}</td>
+                            </tr>
+
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock 主体 %}

@@ -1,0 +1,4 @@
+{{ object.id }}
+{{ object.zhifaleibie }}
+{{ object.bingji_zhifa }}
+{{ object.bingjixibie }}

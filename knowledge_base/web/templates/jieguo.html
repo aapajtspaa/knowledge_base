@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block 标题 %}
+搜索结果
+{% endblock 标题 %}
+{% block 主体 %}
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="/static/img/core-img/breadcrumb-line.png" alt="">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/index/"><i class="fa fa-home"></i>主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">搜索结果</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<section class="contact-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="contact-content-area">
+                    <div class="row">
+
+
+                        <div class="col-12 col-lg-6">
+                            <form action="/search/" method="get">
+                                <div class="contact-content contact-information">
+                                    <h4>搜索结果</h4>
+                                    <div class="single-contact-info d-flex">
+                                        {% if q %}
+                                        <div class="icon">
+                                            <i class="fa fa-linkedin"></i>
+                                        </div>
+                                        <p>搜索内容：{{ q }}</p>
+                                        {% endif %}
+                                    </div>
+                                    <!-- Single Contact Info -->
+                                    <div class="single-contact-info d-flex">
+                                        {% if 病状类别 %}
+                                        <div class="icon">
+                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        </div>
+                                        <p>病状类别：{{ 病状类别 }}</p>
+                                        {% endif %}
+                                    </div>
+
+
+                                    <!-- Single Contact Info -->
+                                    <div class="single-contact-info d-flex">
+                                        {% if 总计用时 %}
+                                        <div class="icon">
+                                            <i class="fa fa-pinterest" aria-hidden="true"></i>
+                                        </div>
+                                        <p>总计用时：{{ 总计用时 }}</p>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Single Contact Info -->
+
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="post-sidebar-area">
+                                <div class="single-widget-area">
+                                    <div class="newsletter-content">
+
+                            <form action="/search1" method="GET">
+
+                                <input type="text" name="q" class="form-control" placeholder="病状搜索">
+                                <button><i class="fa fa-search"></i></button>
+                            </form>
+
+                        </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock 主体 %}

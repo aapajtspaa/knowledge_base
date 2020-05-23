@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block 标题 %}
+搜索
+{% endblock 标题 %}
+{% block 主体 %}
+<div class="breadcrumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="/static/img/core-img/breadcrumb-line.png" alt="">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/index/"><i class="fa fa-home"></i>主页</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">搜索</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="typography-content-area section-padding-0-100">
+    <div class="container">
+        <div style="width:100%;text-align:center">
+            <form action="/search" method="GET">
+                <div>
+                    <div><img src="/static/search.png" alt=""></div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="请输入关键词"
+                               aria-label="Recipient's username" aria-describedby="button-addon2" name="q">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-success my-2 my-sm-0 button-class" type="submit">搜索一下
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10">
+
+                <!-- Type Face -->
+
+                <div class="type-face">
+                    {% for lifang in page.object_list %}
+                    <img class="pt-5" src="/static/img/core-img/breadcrumb-line.png" alt="">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>序号：</strong>{{ lifang.object.id }}</p>
+                    <h4><strong>病机-治法：</strong>{{ lifang.object.bingji_zhifa }}</h4>
+                    <h4><strong>例方名：</strong>{{ lifang.object.lifangming }}</h4>
+
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>主治：</strong>{{ lifang.object.zhuzhi }}</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>证析：</strong>{{ lifang.object.zhengxi }}</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>病机：</strong>{{ lifang.object.bingji }}</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>治法：</strong>{{ lifang.object.zhifa }}</p>
+
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>适应证候：</strong>{{ lifang.object.shiyingzhenghou }}</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>病理分析：</strong>{{ lifang.object.binglifenxi }}</p>
+                    <p><i class="fa fa-circle" aria-hidden="true"></i><strong>立法组方：</strong>{{ lifang.object.lifzufang }}</p>
+
+                    <img class="pt-5" src="/static/img/core-img/breadcrumb-line.png" alt="">
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!--<table class="table">-->
+
+<!--    <caption></caption>-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th scope="col">id</th>-->
+<!--        <th scope="col">病机-治法</th>-->
+<!--        <th scope="col">例方名/适应证候</th>-->
+<!--        <th scope="col">主治/立法组方</th>-->
+<!--        <th scope="col">证析/病理分析</th>-->
+<!--        <th scope="col">病机</th>-->
+<!--        <th scope="col">治法</th>-->
+<!--        <th scope="col">病理分析</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    {% for result in page.object_list %}-->
+
+
+<!--    <tbody>-->
+
+<!--    <tr>-->
+
+<!--        <th scope="row">{{ result.object.id }}</th>-->
+<!--        <td>{{ result.object.bingji_zhifa }}</td>-->
+<!--        <td>{{ result.object.lifangming }}</td>-->
+<!--        <td>{{ result.object.zhuzhi }}</td>-->
+<!--        <td>{{ result.object.zhengxi }}</td>-->
+<!--        <td>{{ result.object.bingji }}</td>-->
+<!--        <td>{{ result.object.zhifa }}</td>-->
+<!--        <td>{{ result.object.zhifa }}</td>-->
+<!--        <td>{{ result.object.binglifenxi }}</td>-->
+<!--    </tr>-->
+
+<!--    </tbody>-->
+<!--    {% endfor %}-->
+
+
+<!--</table>-->
+{% endblock 主体 %}

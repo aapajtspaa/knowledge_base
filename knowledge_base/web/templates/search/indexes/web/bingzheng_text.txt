@@ -1,0 +1,5 @@
+{{ object.id }}
+{{ object.bingji_zhifa }}
+{{ object.shiyingzhenghou }}
+{{ object.binglifenxi }}
+{{ object.lifazufang }}

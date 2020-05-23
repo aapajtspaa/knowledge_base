@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="cn">
+<style>
+    .table {
+        table-layout: fixed;
+    }
+
+    .table td:hover {
+        overflow: visible;
+        white-space: normal;
+    }
+
+    .table td {
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    #topnav {
+        font-size: 20px;
+        padding-left: 5em;
+        padding-right: 5em;
+        height: 2.5em;
+    }
+
+    .form-position {
+        margin-left: 20em;
+        margin-right: 20em;
+        padding-top: 10em;
+    }
+
+    .div-position {
+        margin-left: 20em;
+        margin-right: 20em;
+        padding-top: 2em;
+    }
+
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>{% block 标题 %}{% endblock 标题 %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/static/img/core-img/favicon.ico">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+<!-- ##### Preloader ##### -->
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="circle-preloader">
+        <img src="/static/img/blog-img/load.gif" alt="">
+        <div>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<!-- ##### Header Area Start ##### -->
+<header class="header-area">
+
+    <!-- Top Header Area -->
+    <div class="top-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="top-header-content d-flex align-items-center justify-content-between">
+                        <!-- Search Form -->
+                        <div class="search-form">
+                            <form action="/search/" method="GET">
+                                <input class="form-control" placeholder="站内搜索" name="q">
+                                <!--                                <input type="text" class="form-control" placeholder="请输入病状"-->
+                                <!--                       aria-label="Recipient's username" aria-describedby="button-addon2" name="q">-->
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+
+                        <!-- Social Button -->
+                        <div class="top-social-info">
+                            <span class="navbar-text">
+                                CREATED BY XIAOYANG
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo Area -->
+    <div class="logo-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Nav brand -->
+                    <a href="/index/" class="nav-brand"><img src="/static/img/blog-img/logo.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div id="sticky-wrapper" class="sticky-wrapper" style="height: 70px;">
+        <div class="foode-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav class="classy-navbar" id="foodeNav">
+
+                        <!-- Nav brand -->
+                        <a href="/index/" class="nav-brand"><img src="/static/img/blog-img/logo.png" alt=""></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- close btn -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/index/">主页</a></li>
+                                    <li><a>病状类别</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/feixi/">肺系病机治法与方剂</a></li>
+                                            <li><a href="/piwei/">脾胃病机治法与方剂</a></li>
+                                            <li><a href="/gandan/">肝胆病机治法与方剂</a></li>
+                                            <li><a href="/xinxi/">心系病机治法与方剂</a></li>
+                                            <li><a href="/shenxi/">肾系病机治法与方剂</a></li>
+                                            <li><a href="/liangzang/">两脏同病治法与方剂</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a>治法类别</a>
+                                        <div class="megamenu">
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="#">- 表卫失调</a></li>
+                                                <li><a href="#">- 本脏自病</a></li>
+                                                <li><a href="#">- 肺系病变-鼻窍病变</a></li>
+                                                <li><a href="#">- 肺系病变-喉咙病变</a></li>
+                                                <li><a href="#">- 纳运失常</a></li>
+                                                <li><a href="#">- 统摄无权</a></li>
+                                                <li><a href="#">- 升降失常</a></li>
+                                                <li><a href="#">- 传导失职</a></li>
+                                                <li><a href="#">- 脾窍病变</a></li>
+                                                <li><a href="#">- 寒热病变</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="#">- 疏泄失常</a></li>
+                                                <li><a href="#">- 血分病变</a></li>
+                                                <li><a href="#">- 筋膜病变</a></li>
+                                                <li><a href="#">- 少阳病变</a></li>
+                                                <li><a href="#">- 眼窍病变</a></li>
+                                                <li><a href="#">- 心脉病变</a></li>
+                                                <li><a href="#">- 神志异常</a></li>
+                                                <li><a href="#">- 肾精病变</a></li>
+                                                <li><a href="#">- 水液失调</a></li>
+                                                <li><a href="#">- 肾窍病变</a></li>
+                                            </ul>
+                                            <ul class="single-mega cn-col-4">
+                                                <li><a href="#">- 肺脾同病</a></li>
+                                                <li><a href="#">- 心肺同病</a></li>
+                                                <li><a href="#">- 肺肾同病</a></li>
+                                                <li><a href="#">- 脾肾同病</a></li>
+                                                <li><a href="#">- 肝肾同病</a></li>
+                                                <li><a href="#">- 肝肺同病</a></li>
+                                                <li><a href="#">- 心肝同病</a></li>
+                                                <li><a href="#">- 心肾同病</a></li>
+                                                <li><a href="#">- 心脾同病</a></li>
+                                                <li><a href="#">- 肝脾同病</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li><a href="/about/" target="_blank">关于本站</a></li>
+                                    <li><a href="/contact/" target="_blank">联系小羊</a></li>
+                                </ul>
+
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ##### Header Area End ##### -->
+
+<!-- ##### Hero Area Start ##### -->
+
+{% block 主体 %}
+
+{% endblock 主体 %}
+
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Footer Curve Line -->
+                <img class="footer-curve" src="/static/img/core-img/foo-curve.png" alt="">
+                <!-- Footer Social Info -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="copywrite-text">
+                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                                All rights reserved | 中医治法知识库内容展示 <i class="fa fa-heart-o"
+                                                                     aria-hidden="true"></i> by <a
+                                        href="/index/" target="_blank">XiaoYang</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer Curve Line -->
+                <img class="footer-curve" src="/static/img/core-img/foo-curve.png" alt="">
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ##### Footer Area Start ##### -->
+
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="/static/js/jquery/jquery-2.2.4.min.js"></script>
+<!-- Popper js -->
+<script src="/static/js/bootstrap/popper.min.js"></script>
+<!-- Bootstrap js -->
+<script src="/static/js/bootstrap/bootstrap.min.js"></script>
+<!-- All Plugins js -->
+<script src="/static/js/plugins/plugins.js"></script>
+<!-- Active js -->
+<script src="/static/js/active.js"></script>
+</body>
+
+</html>
